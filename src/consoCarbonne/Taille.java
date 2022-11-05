@@ -9,6 +9,10 @@ public enum Taille {
 		this.conso = conso;
 	}
 
+	public void setConso(double conso) {
+		this.conso = conso;
+	}
+
 	public double getConso(){
 		return this.conso;
 	}

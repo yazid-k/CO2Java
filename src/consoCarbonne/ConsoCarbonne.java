@@ -26,7 +26,7 @@ public class ConsoCarbonne {
 	}
 
 	public String toString(){
-		return "Class : " + this.getClass().getName() + "\nid : " + id + "\nimpact : " + impact + "tCO2eq\n";
+		return "Class : " + this.getClass().getName() + "\nid : " + id + "\nimpact : " + impact + " tCO2eq\n";
 	}
 
 	public interface Comparable{}

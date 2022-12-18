@@ -79,6 +79,7 @@ public class Transport extends ConsoCarbonne{
 		System.out.println("Le français moyen produit 2.9 tCO2eq vis-à-vis du transport : \nVoiture : 1972 kgCO2eq\nAvion : 480 kgCO2eq\nFret et messagerie : 383 kgCO2eq\n" +
 		"Train et bus : 85 kgCO2eq");
 	}
+	@Override
 	/** Fonction toString pour afficher une instance de la classe Transport */
 	public String toString(){
 		return super.toString() + "possede : " + this.possede + "\ntaille : " + this.taille + "\nkilomAnnee : " + this.kilomAnnee + " km\namortissement : " + this.amortissement;
@@ -89,6 +90,6 @@ public class Transport extends ConsoCarbonne{
 	public static void main(String[] args) {
 		Transport test = new Transport(true, Taille.P, 1000, 1, 3);
 		detailTransportMoyen();
-		System.out.println(test);
+		System.out.println("\n\n" + test);
 	}
 }

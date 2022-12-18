@@ -42,12 +42,9 @@ public class ConsoCarbonne {
 	public void setimpact(double impact){
 		this.impact = impact;
 	}
-
+	@Override
 	/** Fonction toString pour afficher une instance de la classe Alimentation */
 	public String toString(){
 		return "Class : " + this.getClass().getName() + "\nid : " + id + "\nimpact : " + impact + " tCO2eq\n";
 	}
-
-	/** Interface */
-	public interface Comparable{}
 }

@@ -23,7 +23,7 @@ public class Utilisateur {
 		this.bienConso = bienConso;
 		this.logement = logement;
 		this.transport = transport;
-		this. servicesPublics = servicesPublics;
+		this.servicesPublics = servicesPublics;
 	}
 	/** Getter de l'attribut alimentation
 	 * @return alimentation de l'instance

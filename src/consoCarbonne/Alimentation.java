@@ -50,7 +50,7 @@ public class Alimentation extends ConsoCarbonne{
 		System.out.println("Le français moyen produit 2.4 tCO2eq vis-à-vis de l'alimentation : \nBoissons : 263 kgCO2eq\nProduits laitiers et autres : 408 kgCO2eq\nAutres : 538 kgCO2eq\n" +
 		"Produits laitiers et oeufs : 1144 kgCO2eq");
 	}
-
+	@Override
 	/** Fonction toString pour afficher une instance de la classe Alimentation */
 	public String toString(){
 		return super.toString() + "txBoeuf : " + this.txBoeuf + "\ntxVege : " + this.txVege;

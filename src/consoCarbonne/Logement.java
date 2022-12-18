@@ -47,6 +47,7 @@ public class Logement extends ConsoCarbonne{
 		System.out.println("Le français moyen produit 2.7 tCO2eq vis-à-vis du logement : \nEnergie et utilités : 1696 kgCO2eq\nConstruction et gros entretien : 675 kgCO2eq\n" +
 		"Equipements des logements : 335 kgCO2eq");
 	}
+	@Override
 	/** Fonction toString pour afficher une instance de la classe Logement */
 	public String toString(){
 		return super.toString() + "superficie : " + this.superficie + "m2\nce : " + this.ce;

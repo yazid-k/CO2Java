@@ -3,7 +3,7 @@ package consoCarbonne;
 /** Classe mère pour tous les postes de consommation carbone
  * @author KADIRI El Yazid GROSJEAN Adrien
  */
-public abstract class ConsoCarbonne {
+public abstract class ConsoCarbonne implements Comparable<ConsoCarbonne>{
 	private int	id;
 	double impact;
 
@@ -46,5 +46,11 @@ public abstract class ConsoCarbonne {
 	/** Fonction toString pour afficher une instance de la classe Alimentation */
 	public String toString(){
 		return "Class : " + this.getClass().getName() + "\nid : " + id + "\nimpact : " + impact + " tCO2eq\n";
+	}
+
+	@Override public int compareTo(ConsoCarbonne cc){
+		if(cc.getImpact() > this.getImpact())
+			return (-1);
+		return(1);
 	}
 }

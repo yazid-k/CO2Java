@@ -3,7 +3,7 @@ package consoCarbonne;
 /** Classe mère pour tous les postes de consommation carbone
  * @author KADIRI El Yazid GROSJEAN Adrien
  */
-public class ConsoCarbonne {
+public abstract class ConsoCarbonne {
 	private int	id;
 	double impact;
 

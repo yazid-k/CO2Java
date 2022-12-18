@@ -5,12 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import consoCarbonne.ConsoCarbonne;
-/** Classe test ConsoCarbone
+import consoCarbonne.ServicesPublics;
+/** Classe test ServicesPublics
  * @author KADIRI El Yazid GROSJEAN Adrien
  */
-public class ConsoCarbonneTest {
-	private static ConsoCarbonne ccTest = new ConsoCarbonne(0);
+public class ServicesPublicsTest {
+	private static ServicesPublics ccTest = new ServicesPublics(0);
 
 	@BeforeClass
 	public static void setUpTests(){
@@ -32,7 +32,7 @@ public class ConsoCarbonneTest {
 
 	@Test
 	public void toString_ConsoCarbonne_returnsDescription(){
-		String expected = "Class : consoCarbonne.ConsoCarbonne\nid : 5\nimpact : 10.0 tCO2eq\n";
+		String expected = "Class : consoCarbonne.ServicesPublics\nid : 5\nimpact : 10.0 tCO2eq\n";
 		assertEquals(expected, ccTest.toString());
 	}
 }

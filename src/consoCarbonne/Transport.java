@@ -17,6 +17,12 @@ public class Transport extends ConsoCarbonne{
 	*/
 	public Transport(boolean possede, Taille taille, int kilomAnnee, int amortissement, int id){
 		super(id);
+		if (taille == null)
+			throw new NullPointerException("Le pointeur sur taille est null");
+		if (kilomAnnee < 0)
+			throw new IllegalArgumentException("kilomAnnee doit être positif");
+		if (amortissement < 0)
+			throw new IllegalArgumentException("amortissement doit être null");
 		this.possede = possede;
 		this.taille = taille;
 		this.kilomAnnee = kilomAnnee;
@@ -29,7 +35,7 @@ public class Transport extends ConsoCarbonne{
 	 * @return possede de l'instance
 	*/
 	public boolean getPossede(){
-		return this.possede;
+		return possede;
 	}
 	/** Setter de l'attribut possede
 	 * @param possede Nouveau possede
@@ -41,7 +47,7 @@ public class Transport extends ConsoCarbonne{
 	 * @return taille de l'instance
 	*/
 	public Taille getTaille(){
-		return this.taille;
+		return taille;
 	}
 	/** Setter de l'attribut taille
 	 * @param taille Nouveau taille
@@ -53,7 +59,7 @@ public class Transport extends ConsoCarbonne{
 	 * @return kilomAnnee de l'instance
 	*/
 	public int getKilomAnnee(){
-		return this.kilomAnnee;
+		return kilomAnnee;
 	}
 	/** Setter de l'attribut kilomAnnee
 	 * @param kilomAnnee Nouveau kilomAnnee
@@ -65,7 +71,7 @@ public class Transport extends ConsoCarbonne{
 	 * @return amortissement de l'instance
 	*/
 	public int getAmortissement(){
-		return this.amortissement;
+		return amortissement;
 	}
 	/** Setter de l'attribut amortissement
 	 * @param amortissement Nouveau amortissement

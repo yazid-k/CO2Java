@@ -1,5 +1,8 @@
 package utilisateur;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import consoCarbonne.*;
 
 /** Utilisateur représente une personne
@@ -8,8 +11,8 @@ import consoCarbonne.*;
 public class Utilisateur {
 	private Alimentation alimentation;
 	private BienConso bienConso;
-	private Logement logement;
-	private Transport transport;
+	private ArrayList<Logement> logement;
+	private ArrayList<Transport> transport;
 	private ServicesPublics servicesPublics;
 	/** Constructeur de la classe Utilisateur
 	 * @param alimentation Poste de consommation carbone alimentation
@@ -18,7 +21,7 @@ public class Utilisateur {
 	 * @param transport Poste de consommation carbone Transport
 	 * @param servicesPublics Poste de consommation carbone ServicesPublics
 	 */
-	public Utilisateur(Alimentation alimentation, BienConso bienConso, Logement logement, Transport transport, ServicesPublics servicesPublics){
+	public Utilisateur(Alimentation alimentation, BienConso bienConso, ArrayList<Logement> logement, ArrayList<Transport> transport, ServicesPublics servicesPublics){
 		this.alimentation = alimentation;
 		this.bienConso = bienConso;
 		this.logement = logement;
@@ -52,13 +55,13 @@ public class Utilisateur {
 	/** Getter de l'attribut logement
 	 * @return logement de l'instance
 	 */
-	public Logement getLogement() {
+	public ArrayList<Logement> getLogement() {
 		return logement;
 	}
 	/** Setter de l'attribut logement
 	 * @param logement Nouveau logement
 	*/
-	public void setLogement(Logement logement) {
+	public void setLogement(ArrayList<Logement> logement) {
 		this.logement = logement;
 	}
 	/** Getter de l'attribut servicesPublics
@@ -76,13 +79,13 @@ public class Utilisateur {
 	/** Getter de l'attribut transport
 	 * @return transport de l'instance
 	 */
-	public Transport getTransport() {
+	public ArrayList<Transport> getTransport() {
 		return transport;
 	}
 	/** Setter de l'attribut transport
 	 * @param transport Nouveau transport
 	*/
-	public void setTransport(Transport transport) {
+	public void setTransport(ArrayList<Transport> transport) {
 		this.transport = transport;
 	}
 	/** Fonction qui calcule la totalité des emissions carbone de l'utilisateur moyen par rapport à ses postes de consommation carbone
@@ -90,25 +93,61 @@ public class Utilisateur {
 	*/
 	public double calculerEmpreinte(){
 		double empreinte;
-		empreinte = this.alimentation.getImpact() + this.logement.getImpact() + this.bienConso.getImpact() + this.transport.getImpact() + this.servicesPublics.getImpact();
+		double empreinteLogement = 0;
+		double empreinteTransport = 0;
+		for (Logement i : this.logement)
+			empreinteLogement+=i.getImpact();
+		for (Transport i : this.transport)
+			empreinteTransport+=i.getImpact();
+		empreinte = this.alimentation.getImpact() + empreinteLogement + this.bienConso.getImpact() + empreinteTransport + this.servicesPublics.getImpact();
 		return(empreinte);
 	}
 	/** Fonction qui donne le détail des emissions carbone de l'utilisateur moyen par rapport à ses postes de consommation carbone */
 	public void detaillerEmpreinte(){
+		double empreinteLogement = 0;
+		double empreinteTransport = 0;
+		for (Logement i : this.logement)
+			empreinteLogement+=i.getImpact();
+		for (Transport i : this.transport)
+			empreinteTransport+=i.getImpact();
 		System.out.println("Impact alimentation : " + this.alimentation.getImpact() + " tCO2eq\nImpact bienConso : " + this.bienConso.getImpact() +" tCO2eq\nImpact logement : " +
-		this.logement.getImpact() +" tCO2eq\nImpact transport : " + this.transport.getImpact() +" tCO2eq\nImpact services publics : " + this.servicesPublics.getImpact()+
+		empreinteLogement +" tCO2eq\nImpact transport : " + empreinteTransport +" tCO2eq\nImpact services publics : " + this.servicesPublics.getImpact()+
 		" tCO2eq\nEnpreinte totale : "+this.calculerEmpreinte()+" tCO2eq");
+	}
+	/** Fonction qui ordonne les consommations carbone de l'utilisateur
+	 * @return Liste ordonnées contenant les consommations carbones de l'utilisateur en fonction de leur impact
+	*/
+	public ArrayList<ConsoCarbonne> ordonnerConso(){
+		ArrayList<ConsoCarbonne> cc = new ArrayList<>();
+		cc.add(alimentation);
+		cc.add(bienConso);
+		cc.add(servicesPublics);
+		for (Logement i : logement)
+			cc.add(i);
+		for (Transport i : transport)
+			cc.add(i);
+		Collections.sort(cc);
+		return(cc);
 	}
 	/** Main
 	 * @param args Paramètre non utilisé
 	*/
 	public static void main(String[] args) {
-		Alimentation alimentation = new Alimentation(0.5 , 0.5, 1);
+		Alimentation alimentation = new Alimentation(0.9 , 0.1, 1);
 		BienConso bienConso = new BienConso(1750, 2);
-		Logement logement = new Logement(25, CE.G, 3);
-		Transport transport = new Transport(true, Taille.G, 300, 5, 4);
-		ServicesPublics servicesPublics = new ServicesPublics(5);
+		Logement logement1 = new Logement(25, CE.G, 3);
+		Transport transport1 = new Transport(true, Taille.G, 300, 5, 4);
+		Logement logement2 = new Logement(50, CE.A, 5);
+		Transport transport2 = new Transport(true, Taille.P, 600, 5, 6);
+		ServicesPublics servicesPublics = new ServicesPublics(7);
+		ArrayList<Logement> logement = new ArrayList<Logement>();
+		ArrayList<Transport> transport = new ArrayList<Transport>();
+		logement.add(logement1);
+		logement.add(logement2);
+		transport.add(transport1);
+		transport.add(transport2);
 		Utilisateur user = new Utilisateur(alimentation, bienConso, logement, transport, servicesPublics);
 		user.detaillerEmpreinte();
+		System.out.println("\n"+ user.ordonnerConso());
 	}
 }

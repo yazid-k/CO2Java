@@ -12,6 +12,8 @@ public class BienConso extends ConsoCarbonne{
 	*/
 	public BienConso(double montant, int id){
 		super(id);
+		if (montant < 0)
+			throw new IllegalArgumentException("Le montant doit être positif");
 		this.montant = montant;
 		this.impact = montant / 1750;
 	}
@@ -19,7 +21,7 @@ public class BienConso extends ConsoCarbonne{
 	 * @return montant de l'instance
 	*/
 	public double getMontant(){
-		return this.montant;
+		return montant;
 	}
 	/** Setter de l'attributr montant
 	 * @param montant Nouveau montant

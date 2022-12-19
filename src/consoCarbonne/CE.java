@@ -29,7 +29,7 @@ public enum CE {
 	 * @return coeff de l'instance
 	*/
 	public double getCoeff(){
-		return this.coeff;
+		return coeff;
 	}
 
 	/** Setter de l'attribut coeff

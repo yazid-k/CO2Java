@@ -18,7 +18,7 @@ public enum Taille {
 	 * @return conso de l'instance
 	*/
 	public double getConso(){
-		return this.conso;
+		return conso;
 	}
 	/** Setter de l'attribut coeff
 	 * @param conso de l'instance

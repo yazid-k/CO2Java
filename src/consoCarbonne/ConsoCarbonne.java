@@ -11,6 +11,9 @@ public abstract class ConsoCarbonne implements Comparable<ConsoCarbonne>{
 	 * @param id Identifiant de l'instance à créer
 	 */
 	public ConsoCarbonne(int id){
+		if (id <= 0) {
+			throw new IllegalArgumentException("Identifiant non valide");
+		}
 		this.id = id;
 		this.impact = 0;
 	}
@@ -19,7 +22,7 @@ public abstract class ConsoCarbonne implements Comparable<ConsoCarbonne>{
 	 * @return id de l'instance
 	 */
 	public int getId(){
-		return this.id;
+		return id;
 	}
 
 	/** Setter de l'attribut id
@@ -42,15 +45,12 @@ public abstract class ConsoCarbonne implements Comparable<ConsoCarbonne>{
 	public void setimpact(double impact){
 		this.impact = impact;
 	}
-	@Override
-	/** Fonction toString pour afficher une instance de la classe Alimentation */
+	/** Fonction toString pour afficher une instance de la classe ConsoCarbonne */
 	public String toString(){
 		return "Class : " + this.getClass().getName() + "\nid : " + id + "\nimpact : " + impact + " tCO2eq\n";
 	}
 
 	@Override public int compareTo(ConsoCarbonne cc){
-		if(cc.getImpact() > this.getImpact())
-			return (-1);
-		return(1);
+		return(Double.compare(impact, cc.getImpact()));
 	}
 }

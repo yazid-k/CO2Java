@@ -13,6 +13,10 @@ public class Logement extends ConsoCarbonne{
 	*/
 	public Logement(int superficie, CE ce, int id){
 		super(id);
+		if (superficie < 0)
+			throw new IllegalArgumentException("La superficie doit être positive");
+		if (ce == null)
+			throw new NullPointerException("Le pointeur sur ce est null");
 		this.superficie = superficie;
 		this.ce = ce;
 		this.impact = superficie * ce.getCoeff();

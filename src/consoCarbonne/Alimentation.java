@@ -14,6 +14,12 @@ public class Alimentation extends ConsoCarbonne{
 	*/
 	public Alimentation(double txBoeuf, double txVege, int id){
 		super(id);
+		if (txBoeuf < 0 || txBoeuf > 1)
+			throw new IllegalArgumentException("txBoeuf doit être compris entre 0 et 1");
+		if (txVege < 0 || txVege > 1)
+			throw new IllegalArgumentException("txVege doit être compris entre 0 et 1");
+		if (txBoeuf + txVege != 1)
+			throw new IllegalArgumentException("La somme de txVege et txBoeuf doit être égale à 1");
 		this.txBoeuf = txBoeuf;
 		this.txVege = txVege;
 		this.impact = 8 * txBoeuf + 1.6 * (1 - txVege - txBoeuf) + 0.9 * txVege;
